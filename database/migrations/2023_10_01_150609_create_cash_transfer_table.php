@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransferMoneyTable extends Migration
+class CreateCashTransferTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTransferMoneyTable extends Migration
      */
     public function up()
     {
-        Schema::create('transfer_money', function (Blueprint $table) {
+        Schema::create('cash_transfer', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedBigInteger('user_id');
             $table->integer('bank_number_sender');

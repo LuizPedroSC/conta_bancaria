@@ -1,7 +1,7 @@
 <?php
 
 namespace App\DTO;
-// use Spatie\LaravelData\Data;
+
 
 abstract class DTO
 {
@@ -21,5 +21,23 @@ abstract class DTO
 
     public function convertInteger($value){
         return intval($value);
+    }
+
+    protected function extractValuesByKeys($array_values, $desiredKeys){
+        return array_combine(
+            $desiredKeys,
+            array_map(function ($key) use ($array_values) {
+                return $array_values[$key];
+            }, $desiredKeys)
+        );
+    }
+
+    protected function renameKeysArray($array, $map_keys){
+        return array_combine(
+            array_map(function ($key) use ($map_keys) {
+                return isset($map_keys[$key]) ? $map_keys[$key] : $key;
+            }, array_keys($array)),
+            $array
+        );
     }
 }

@@ -5,8 +5,14 @@ namespace App\Repositories;
 use App\Models\BankAccount;
 use App\DTO\BankAccountDTO;
 
-class BankAccountRepository
+class BankAccountRepository extends BaseRepository
 {
+
+    public function __construct()
+    {
+        parent::__construct(new BankAccount());
+    }
+
     public function findByBankAccount(BankAccountDTO $bankAccountDetail, $columns = ['*']){
         return BankAccount::select($columns)
             ->where([

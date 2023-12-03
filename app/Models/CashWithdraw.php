@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CashDeposit extends BaseModelUUID
+class CashWithdraw extends BaseModelUUID
 {
     use HasFactory;
 
     public $incrementing = false;
-    protected $table = 'cash_deposits';
+    protected $table = 'cash_withdraw';
     protected $keyType = 'string';
     protected $primaryKey = 'id'; 
 
@@ -18,6 +18,8 @@ class CashDeposit extends BaseModelUUID
         'branch_number',
         'account_number',
         'user_id',
-        'deposit_value'
+        'withdraw_value'
     ];
+
+
 }

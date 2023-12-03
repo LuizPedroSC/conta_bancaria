@@ -5,37 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
-use App\DTO\CashDepositDTO;
-use App\Http\Requests\CashDepositRequest;
+use App\DTO\CashWithdrawDTO;
+use App\Http\Requests\CashWithdrawRequest;
 use App\Services\BankAccountService;
-use App\Services\CashDepositService;
+use App\Services\CashWithdrawService;
 use App\Services\ResponseService;
 
-class CashDepositController extends Controller
+class CashWithdrawController extends Controller
 {
-    const SUCCESS_MESSAGE =  'Deposito realizado com sucesso';
-    const OPERATION = 'deposit';
+    const SUCCESS_MESSAGE =  'Saque realizado com sucesso';
+    const OPERATION = 'withdraw';
     
-    private $CashDepositService;
+    private $CashWithdrawService;
 
     public function __construct(){
         $this->BankAccountService = new BankAccountService();
-        $this->CashDepositService = new CashDepositService();
+        $this->CashWithdrawService = new CashWithdrawService();
         $this->ResponseService = new ResponseService();
     }
 
-    public function deposit(CashDepositRequest $request){
+    public function withdraw(CashWithdrawRequest $request){
         try {
             DB::beginTransaction();
             $data = $request->validated();
-            $cashDeposit = new CashDepositDTO($data);
-            $this->CashDepositService->deposit($cashDeposit);
+            $CashWithdraw = new CashWithdrawDTO($data);
+            $this->CashWithdrawService->withdraw($CashWithdraw);
             DB::commit();
             Log::channel('bank_transition')->info(self::OPERATION, $data);
             return $this->ResponseService->successResponse(self::SUCCESS_MESSAGE);
         } catch (Exception $e) {
             Log::error([
-                'function' => 'CashDepositController@deposit',
+                'function' => 'CashWithdrawController@withdraw',
                 'error' => $e->getMessage(), 
                 'data' => $data
             ]);

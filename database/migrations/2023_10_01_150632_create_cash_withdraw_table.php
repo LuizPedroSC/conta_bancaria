@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWithdrawMoneyTable extends Migration
+class CreateCashWithdrawTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWithdrawMoneyTable extends Migration
      */
     public function up()
     {
-        Schema::create('withdraw_money', function (Blueprint $table) {
+        Schema::create('cash_withdraw', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('bank_number');
             $table->integer('branch_number');

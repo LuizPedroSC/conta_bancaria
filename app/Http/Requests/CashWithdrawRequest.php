@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WithdrawMoneyRequest extends FormRequest
+class CashWithdrawRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class WithdrawMoneyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class WithdrawMoneyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'bank_number' => 'required|numeric',
+            'account_number' => 'required|numeric',
+            'branch_number' => 'required|numeric',
+            'withdraw_value' => 'required|numeric|min:0.01'
         ];
     }
 }

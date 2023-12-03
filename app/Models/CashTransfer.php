@@ -4,20 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CashDeposit extends BaseModelUUID
+class CashTransfer extends BaseModelUUID
 {
     use HasFactory;
 
     public $incrementing = false;
-    protected $table = 'cash_deposits';
+    protected $table = 'cash_transfer';
     protected $keyType = 'string';
     protected $primaryKey = 'id'; 
 
     protected $fillable = [
-        'bank_number',
-        'branch_number',
-        'account_number',
         'user_id',
+        'bank_number_sender',
+        'branch_number_sender',
+        'account_number_sender',
+        'bank_number_recipient',
+        'branch_number_recipient',
+        'account_number_recipient',
         'deposit_value'
     ];
 }

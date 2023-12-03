@@ -67,6 +67,14 @@ return [
             'days' => 14,
         ],
 
+        'bank_transition' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/bank_transition/bank_transition.log'),
+            'level' => 'debug',
+            'days' => 7,
+            'ignore_exceptions' => false,
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
